@@ -1,0 +1,29 @@
+{
+  "initTodos": [
+    {
+      "content": "把冰箱發霉的檸檬拿去丟",
+      "isChecked": false
+    },
+    {
+      "content": "打電話叫媽媽匯款給我",
+      "isChecked": false
+    },
+    {
+      "content": "整理電腦資料夾",
+      "isChecked": false
+    },
+    {
+      "content": "繳電費水費瓦斯費",
+      "isChecked": false
+    },
+    {
+      "content": "約vicky禮拜三泡溫泉",
+      "isChecked": false
+    },
+    {
+      "content": "約ada禮拜四吃晚餐",
+      "isChecked": false
+    }
+  ]
+  
+}
