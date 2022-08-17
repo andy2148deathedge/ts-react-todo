@@ -2,6 +2,11 @@ import { Todo, Todos } from "../types";
 import initData from "../seeds.json";
 import { ReactEventHandler, useEffect, useState } from "react";
 
+/* import components */
+import Input from "./Input";
+import TodosList from "./TodosList";
+
+
 const initTodos: Todos = initData.initTodos;
 enum PageMode {
     All = 'All',
@@ -67,67 +72,41 @@ const TodosPage = () => {
 
     return (
         <div id="todoListPage" className="bg-half">
-        <nav>
-            <h1>
-            <a href="#">ONLINE TODO LIST</a>
-            </h1>
-        </nav>
-        <div className="conatiner todoListPage vhContainer">
-            <div className="todoList_Content">
-            <div className="inputBox">
-                <input
-                    type="text"
-                    placeholder="請輸入待辦事項"
-                    value={inputText}
-                    onChange={(e) => {setInputText(e.target.value)}}
-                />
-                <a href="#">
-                <i className="fa fa-plus" onClick={addTodo}></i>
-                </a>
-            </div>
-            <div className="todoList_list">
-                <ul className="todoList_tab">
-                <li>
-                    <a href="#" className={activeArr[0]} onClick={() => setPageMode(PageMode.All)} >
-                    全部
-                    </a>
-                </li>
-                <li>
-                    <a href="#" className={activeArr[1]} onClick={() => setPageMode(PageMode.Undone)}>待完成</a>
-                </li>
-                <li>
-                    <a href="#" className={activeArr[2]} onClick={() => setPageMode(PageMode.Done)}>已完成</a>
-                </li>
-                </ul>
-                <div className="todoList_items">
-                <ul className="todoList_item">
-                    {showTodos?.map((todo, i) => (
-                        <li key={todo.content}>
-                            <label className="todoList_label">
-                            <input
-                                className="todoList_input"
-                                type="checkbox"
-                                aria-valuenow={i}
-                                onChange={chgCheck}
-                                checked={todo.isChecked} 
-                            />
-                            <span>{todo.content}</span>
-                            </label>
-                            <a href="#">
-                            <i className="fa fa-times" aria-label={todo.content} onClick={removeTodo}></i>
-                            </a>
-                        </li>
-                    ))}
+            <nav>
+                <h1>
+                <a href="#">ONLINE TODO LIST</a>
+                </h1>
+            </nav>
+            <div className="conatiner todoListPage vhContainer">
+                <div className="todoList_Content">
 
-                </ul>
-                <div className="todoList_statistics">
-                    <p> {doneTodos.length} 個已完成項目</p>
-                    <a href="#" onClick={removeDones}>清除已完成項目</a>
-                </div>
+                    <Input inputText={inputText} setInputText={setInputText} addTodo={addTodo}/>
+                
+                    <div className="todoList_list">
+                        <ul className="todoList_tab">
+                            <li>
+                                <a href="#" className={activeArr[0]} onClick={() => setPageMode(PageMode.All)} >
+                                全部
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" className={activeArr[1]} onClick={() => setPageMode(PageMode.Undone)}>待完成</a>
+                            </li>
+                            <li>
+                                <a href="#" className={activeArr[2]} onClick={() => setPageMode(PageMode.Done)}>已完成</a>
+                            </li>
+                        </ul>
+                        <div className="todoList_items">
+                            <TodosList showTodos={showTodos} chgCheck={chgCheck} removeTodo={removeTodo} />
+
+                            <div className="todoList_statistics">
+                                <p> {doneTodos.length} 個已完成項目</p>
+                                <a href="#" onClick={removeDones}>清除已完成項目</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            </div>
-        </div>
         </div>
     );
 };
